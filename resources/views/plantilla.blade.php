@@ -33,7 +33,7 @@
 
 <body>
     <header class="Header_Institucional py-4">
-        <h1 class="text-3xl text-center">Registro de usuarios</h1>
+        <h1 class="text-3xl text-center">Sistema de Interfaz de Calificaciones</h1>
     </header>
     <main class="Main_Instirucional mt-8 px-4">
         @yield('contenido')<!---Indica las partes dinamicas. En este caso es titulo --->

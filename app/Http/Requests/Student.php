@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Requests;
-
 use Illuminate\Foundation\Http\FormRequest;
 
 class Student extends FormRequest
@@ -23,7 +22,7 @@ class Student extends FormRequest
     {
         return [
             // bail sirve para que todo sea obligatorio
-            'name_student'=>'bail|required|alpha',
+            'name_student'=>'bail|required|alpha', //Para guiones y apostrófes
             'email_student'=>'bail|required|email',
             'password_student'=>'bail|required|between:4,10'
         ];

@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-//use  App\Http\Controllers\Student\StudentController;
 use  App\Http\Controllers\StudentController;
+use  App\Http\Controllers\Student\StudentController2;
 
 
 /*
@@ -17,13 +18,26 @@ use  App\Http\Controllers\StudentController;
 */
 
 Route::get('/', function () {
-    return view('formulario');
+    return view('welcome');
 });
 
-//Route::get('/alumnos', [StudentController:: class, 'index']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-//Cambia para almacenar a store
 
-//Route::post('/alumnos', [StudentController:: class, 'store']);
 
-Route::resource('estudiantes', StudentController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('/estudiantes', StudentController::class);
+    Route::get('/sinpermiso', function () {
+        return view('sinpermiso');
+    })->name('sinpermiso');
+    Route::resource('/formulario', StudentController2::class);
+
+});
+
+
+require __DIR__.'/auth.php';
